@@ -7,7 +7,9 @@ function generateSpacing(): { [key: string]: string } {
     '9.2p': '9.2%',
     '7.5p': '7.5%',
     '8p': '8%',
+    '9p': '9%',
     '14p': '14%',
+    '16p': '16%',
     '24p': '24%',
     '36p': '36%',
     '38p': '38%',
@@ -36,6 +38,14 @@ const config: Config = {
     extend: {
       maxWidth: {
         '80p': '80%',
+      },
+      width: {
+        '30p': '30%',
+        '20p': '20%',
+      },
+      height: {
+        '45p': '45%',
+        '24p': '24%',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

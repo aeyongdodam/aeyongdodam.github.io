@@ -1,10 +1,27 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import Algorithms from '@/components/algorithm/algorithm'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import html2canvas from 'html2canvas'
 
 export default function Home() {
   const scale = 1 / 5
+  const algorithmsContainerRef = useRef(null)
+  const [algorithmImage, setAlgorithmImage] = useState('')
+
+  const captureAlgorithms = () => {
+    if (algorithmsContainerRef.current) {
+      html2canvas(algorithmsContainerRef.current).then((canvas) => {
+        const img = canvas.toDataURL('image/png')
+        setAlgorithmImage(img)
+      })
+    }
+  }
+  useEffect(() => {
+    captureAlgorithms()
+  }, [])
 
   return (
     <div className="relative flex min-h-screen items-start bg-white">
@@ -16,26 +33,28 @@ export default function Home() {
           style={{ objectFit: 'contain' }}
         />
       </div>
-      <div
-        className="absolute ml-60p mt-9p h-24p w-20p overflow-hidden p-4"
-        style={{
-          border: '1px solid black',
-          cursor: 'pointer',
-          transform: `rotateX(-55deg) rotateY(1deg) rotateZ(-45deg)`,
-        }}
-      >
+      <div className="scale(${scale}) absolute ml-60p mt-9p h-24p w-20p  p-4">
         <Link href="/algorithm">
-          <div
-            style={{
-              transform: `scale(${scale})`,
-
-              transformOrigin: 'top left',
-            }}
-          >
-            <div style={{ width: '1440px', height: '900px' }}>
+          {algorithmImage ? (
+            <Image
+              src={algorithmImage}
+              alt="Algorithm Snapshot"
+              fill={true}
+              style={{
+                objectFit: 'contain',
+                border: '1px solid black',
+                cursor: 'pointer',
+                transform: `rotateX(-55deg)  rotateY(1deg) rotateZ(-45deg)`,
+              }}
+            />
+          ) : (
+            <div
+              ref={algorithmsContainerRef}
+              style={{ width: '1440px', height: '900px' }}
+            >
               <Algorithms />
             </div>
-          </div>
+          )}
         </Link>
       </div>
     </div>

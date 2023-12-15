@@ -38,6 +38,7 @@ const config: Config = {
     extend: {
       maxWidth: {
         '80p': '80%',
+        '40p': '40%',
       },
       width: {
         '30p': '30%',

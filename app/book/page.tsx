@@ -1,6 +1,6 @@
 import React from 'react'
 import MacScreen from '@/components/macScreen/macScreen'
 
-export default function Algorithm() {
-  return <MacScreen text="algorithm" />
+export default function Book() {
+  return <MacScreen text="Book" />
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import Algorithms from '@/components/algorithm/algorithm'
 import Link from 'next/link'
+import MacScreen from '@/components/macScreen/macScreen'
+import Algorithm from './algorithm/page'
 
 export default function Home() {
   const scale = 1 / 5
@@ -38,7 +39,7 @@ export default function Home() {
             }}
           >
             <div style={{ width: '1440px', height: '900px' }}>
-              <Algorithms />
+              <Algorithm />
             </div>
           </div>
         </Link>

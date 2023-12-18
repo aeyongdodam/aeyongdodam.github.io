@@ -27,3 +27,13 @@ body {
     rgb(var(--background-start-rgb));
   font-family: 'Abhaya Libre', serif;
 }
+
+@font-face {
+  font-family: 'Akiv-Bold';
+  src: url('/font/AktivGrotesk-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Akiv-Regular';
+  src: url('/font/AktivGrotesk-Regular.ttf');
+}

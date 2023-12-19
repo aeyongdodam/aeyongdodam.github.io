@@ -17,7 +17,18 @@ export default function Home() {
   const [etcImage, setEtcImage] = useState('')
   const [devImage, setDevImage] = useState('')
 
+  const [isMacToggleLoaded, setIsMacToggleLoaded] = useState(false)
+  const [isMacContentLoaded, setIsMacContentLoaded] = useState(false)
+
   const router = useRouter() // useRouter 훅 사용
+
+  const handlerSetToggle = (newvalue: boolean) => {
+    setIsMacToggleLoaded(newvalue)
+  }
+
+  const handlerSetContent = (newvalue: boolean) => {
+    setIsMacContentLoaded(newvalue)
+  }
 
   const captureAlgorithms = () => {
     if (algorithmsContainerRef.current) {
@@ -56,11 +67,13 @@ export default function Home() {
   }
 
   useEffect(() => {
-    captureAlgorithms()
-    captureBook()
-    captureEtc()
-    captureDev()
-  }, [])
+    if (isMacToggleLoaded && isMacContentLoaded) {
+      captureAlgorithms()
+      captureBook()
+      captureEtc()
+      captureDev()
+    }
+  }, [isMacToggleLoaded, isMacContentLoaded])
 
   const handleAlgorithmClick = () => {
     animateAndNavigate('algorithmImage', '/algorithm')
@@ -159,7 +172,11 @@ export default function Home() {
                 height: '900px',
               }}
             >
-              <MacScreen text="Algorithm" />
+              <MacScreen
+                text="Algorithm"
+                setMacToggleLoaded={handlerSetToggle}
+                setMacContentLoaded={handlerSetContent}
+              />
             </div>
           )}
         </div>
@@ -193,7 +210,11 @@ export default function Home() {
                 height: '900px',
               }}
             >
-              <MacScreen text="Book" />
+              <MacScreen
+                text="Book"
+                setMacToggleLoaded={handlerSetToggle}
+                setMacContentLoaded={handlerSetContent}
+              />
             </div>
           )}
         </div>
@@ -228,7 +249,11 @@ export default function Home() {
                 height: '900px',
               }}
             >
-              <MacScreen text="Etc" />
+              <MacScreen
+                text="Etc"
+                setMacToggleLoaded={handlerSetToggle}
+                setMacContentLoaded={handlerSetContent}
+              />
             </div>
           )}
         </div>
@@ -263,7 +288,11 @@ export default function Home() {
                 height: '900px',
               }}
             >
-              <MacScreen text="DevStory" />
+              <MacScreen
+                text="DevStory"
+                setMacToggleLoaded={handlerSetToggle}
+                setMacContentLoaded={handlerSetContent}
+              />
             </div>
           )}
         </div>
